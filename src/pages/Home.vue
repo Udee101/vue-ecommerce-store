@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="text-2xl">Home</div>
+  <div class="text-2xl mt-16">Home</div>
 </template>
 
 <style scoped>

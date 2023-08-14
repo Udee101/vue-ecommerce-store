@@ -1,5 +1,4 @@
 <script setup>
-import Home from './pages/Home.vue';
 import NavBar from './components/global/NavBar.vue';
 import Footer from './components/global/Footer.vue';
 

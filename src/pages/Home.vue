@@ -1,13 +1,13 @@
 <script setup>
-import Banner from '../components/Banner.vue';
-
+	import Banner from "../components/Banner.vue";
+	import Categories from "../components/Categories.vue";
 </script>
 
 <template>
-  <section class="text-2xl mt-16">
-    <Banner />
-  </section>
+	<div class="mt-16">
+		<Banner />
+		<Categories />
+	</div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

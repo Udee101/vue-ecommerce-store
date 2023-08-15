@@ -3,7 +3,7 @@ import { logoText, cart } from '../../assets';
 </script>
 
 <template>
-  <header class="p-4 h-20 w-full border border-b-black bg-white fixed top-0">
+  <header class="p-4 h-20 w-full border border-b-black bg-white fixed top-0 z-[2]">
     <div class="max-w-[1200px] mx-auto h-full flex items-center justify-between">
       <div class="w-32">
         <router-link :to="{name: 'home'}">

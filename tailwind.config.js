@@ -6,7 +6,11 @@ export default {
       colors: {
         'primary': '#3A408C',
         'primary-100': '#484fb1',
-        'secondary': '#E2342D'
+        'secondary': '#E2342D',
+        'grey': '#F3F3F3'
+      },
+      maxWidth: {
+        'site': '1200px'
       }
     },
   },

@@ -14,7 +14,7 @@
 					class="w-full h-full lg:w-[80%] mx-auto mix-blend-darken duration-500"
 				/>
 			</div>
-			<p class="pt-2 font-semibold w-full text-left">{{ product.title }}</p>
+			<p class="pt-2 text-sm font-semibold w-full text-left">{{ product.title }}</p>
 			<p class="text-sm font-light w-full text-left">
 				&dollar;{{ product.price }}
 			</p>

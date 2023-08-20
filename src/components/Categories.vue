@@ -1,4 +1,15 @@
-<script setup></script>
+<script setup>
+	import { onMounted, ref } from "vue";
+	import { getProductsCategories } from "../api/products";
+	import CartegoryCard from "./CartegoryCard.vue";
+
+	const categories = ref([]);
+	onMounted(() => {
+		getProductsCategories().then((res) => {
+			categories.value = res.data;
+		});
+	});
+</script>
 
 <template>
 	<section class="w-full">
@@ -13,43 +24,21 @@
 					aspernatur modi facere provident quos. Distinctio quaerat.
 				</p>
 
-        <div>
-          <div class="grid grid-cols-2 gap-5 justify-items-center lg:grid-cols-4">
-            <div class="md:w-[80%] lg:w-full px-2 py-3">
-              <div class="img-container w-full h-[90%] bg-[#F3F3F3] p-6">
-                <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="" class="w-full h-full mx-auto mix-blend-darken duration-500">
-              </div>
-              <p class="py-3 font-semibold">Electronics</p>
-            </div>
-
-            <div class="md:w-[80%] lg:w-full px-2 py-3">
-              <div class="img-container w-full h-[90%] bg-[#F3F3F3] p-6">
-                <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="" class="w-full h-full mx-auto mix-blend-darken duration-500">
-              </div>
-              <p class="py-3 font-semibold">Electronics</p>
-            </div>
-
-            <div class="md:w-[80%] lg:w-full px-2 py-3">
-              <div class="img-container w-full h-[90%] bg-[#F3F3F3] p-6">
-                <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="" class="w-full h-full mx-auto mix-blend-darken duration-500">
-              </div>
-              <p class="py-3 font-semibold">Electronics</p>
-            </div>
-
-            <div class="md:w-[80%] lg:w-full px-2 py-3">
-              <div class="img-container w-full h-[90%] bg-[#F3F3F3] p-6">
-                <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="" class="w-full h-full mx-auto mix-blend-darken duration-500">
-              </div>
-              <p class="py-3 font-semibold">Electronics</p>
-            </div>
-            
-          </div>
-        </div>
+				<div class="overflow-x-auto w-full">
+					<div class="flex justify-items-center gap-x-2">
+						<CartegoryCard
+							v-for="(item, index) in categories"
+							:key="index"
+							:title="item"
+							class="px-2 py-3"
+						/>
+					</div>
+				</div>
 
 				<div>
 					<router-link
 						:to="{ name: 'home' }"
-						class="text-primary border border-primary p-2 duration-300 hover:bg-primary hover:text-white"
+						class="text-white text-sm font-bold border border-primary bg-primary py-3 px-4 rounded-md duration-300 hover:bg-primary-100"
 						>Shop All Products</router-link
 					>
 				</div>
@@ -57,9 +46,3 @@
 		</div>
 	</section>
 </template>
-
-<style scoped>
-.img-container:hover img {
-  transform: scale(1.05);
-}
-</style>

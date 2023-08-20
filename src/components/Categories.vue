@@ -2,6 +2,7 @@
 	import { onMounted, ref } from "vue";
 	import { getProductsCategories } from "../api/products";
 	import CartegoryCard from "./CartegoryCard.vue";
+	import HeaderText from "./HeaderText.vue";
 
 	const categories = ref([]);
 	onMounted(() => {
@@ -13,11 +14,12 @@
 
 <template>
 	<section class="w-full">
-		<div class="max-w-[1200px] mx-auto pt-10 pb-32">
+		<div class="max-w-site mx-auto pt-10 pb-32">
 			<div class="flex flex-col gap-y-8 place-items-center text-center">
-				<header class="max-w-[16rem] mt-6 text-2xl">
-					<h2 class="bg-black text-white py-2 px-4">Product Categories</h2>
-				</header>
+				<HeaderText 
+					:first-text="'Products '"
+					:second-text="'Categories'"
+				/>
 
 				<p class="max-w-[600px]">
 					Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem

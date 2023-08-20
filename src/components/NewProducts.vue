@@ -18,7 +18,6 @@
 		<div class="max-w-site mx-auto pb-32">
 			<div class="flex flex-col gap-y-8 place-items-center text-center">
 				<HeaderText
-					:header-class="'max-w-[16rem] mt-6 text-2xl'"
 					:first-text="'New '"
 					:second-text="'Products'"
 				/>
@@ -44,6 +43,3 @@
 		</div>
 	</section>
 </template>
-
-<style scoped>
-</style>

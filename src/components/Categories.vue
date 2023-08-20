@@ -2,7 +2,7 @@
 
 <template>
 	<section class="w-full">
-		<div class="max-w-[1200px] mx-auto py-10">
+		<div class="max-w-[1200px] mx-auto pt-10 pb-32">
 			<div class="flex flex-col gap-y-8 place-items-center text-center">
 				<header class="max-w-[16rem] mt-6 text-2xl">
 					<h2 class="bg-black text-white py-2 px-4">Product Categories</h2>

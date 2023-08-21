@@ -1,5 +1,6 @@
 import HomePage from '../pages/Home.vue';
 import Product from '../pages/Product.vue';
+import AllProducts from '../pages/AllProducts.vue';
 
 const routes = [
   {
@@ -21,6 +22,13 @@ const routes = [
     path: '/product',
     name: 'product',
     component: Product,
+    // props: true
+  },
+
+  {
+    path: '/products',
+    name: 'products',
+    component: AllProducts,
     // props: true
   }
 ]

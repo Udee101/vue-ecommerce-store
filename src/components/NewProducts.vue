@@ -28,13 +28,14 @@
 							v-for="item in products"
 							:key="item.id"
 							:product="item"
+              :img-container-width="'w-44'"
 						/>
 					</div>
 				</div>
 
 				<div>
 					<router-link
-						:to="{ name: 'home' }"
+						:to="{ name: 'products' }"
 						class="text-white text-sm font-bold border border-primary bg-primary py-3 px-4 rounded-md duration-300 hover:bg-primary-100"
 						>Shop All Products</router-link
 					>

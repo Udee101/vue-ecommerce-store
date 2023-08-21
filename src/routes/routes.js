@@ -29,7 +29,6 @@ const routes = [
     path: '/products',
     name: 'products',
     component: AllProducts,
-    // props: true
   }
 ]
 

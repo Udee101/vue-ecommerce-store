@@ -4,19 +4,42 @@
 	import { computed, ref } from "vue";
 	import { useProductStore } from "../stores/productStore";
 
+	const isdropDownOpen = ref(false);
+	const placeholder = ref("All...");
+
 	const productStore = useProductStore();
 
-	productStore.fetchProducts();
 	productStore.fetchCategories();
+	productStore.fetchProducts();
 
-	const products = computed(() => {
-		return productStore.products;
-	});
-	const categories = computed(() => {
-		return productStore.categories;
-	});
-
-	const isdropDownOpen = ref(false);
+	const products = ref([]);
+  const categories = computed(() => {
+    return productStore.categories;
+  });
+  const allProducts = computed(() => {
+    return getAllProducts()
+  });
+	const getAllProducts = () => {
+    placeholder.value = "All..."
+    return products.value = productStore.products;
+	};
+	const getMenClothes = () => {
+		placeholder.value = "men's clothing";
+		return (products.value = productStore.getMensClothing);
+	};
+	const getWomenClothes = () => {
+		placeholder.value = "women's clothing";
+		return (products.value = productStore.getWomensClothing);
+	};
+	const getJewelry = () => {
+		placeholder.value = "jewelry";
+		return (products.value = productStore.getJewelries);
+	};
+	const getElectronic = () => {
+		placeholder.value = "electronics";
+		return (products.value = productStore.getElectronics);
+	};
+	const actions = [getElectronic, getJewelry, getMenClothes, getWomenClothes];
 </script>
 
 <template>
@@ -28,7 +51,6 @@
 					:first-text="'All '"
 					:second-text="'Products'"
 				/>
-
 				<div class="flex items-center space-x-5">
 					<p>Filters:</p>
 					<div class="text-sm">
@@ -40,7 +62,7 @@
 										@click="isdropDownOpen = !isdropDownOpen"
 										class="relative flex items-center p-2 text-sm bg-white border rounded-md"
 									>
-										<span class="mx-1 text-gray-500">choose....</span>
+										<span class="mx-1 text-gray-500">{{ placeholder }}</span>
 										<svg
 											:class="[
 												isdropDownOpen === true ? ' rotate-0' : ' -rotate-90',
@@ -60,15 +82,17 @@
 									<!-- Dropdown menu -->
 									<div
 										v-if="isdropDownOpen"
+										@click="isdropDownOpen = false"
 										class="absolute z-[2] left-0 w-52 mt-2 overflow-hidden bg-white rounded-md shadow-x border"
 									>
 										<button
 											v-for="(category, index) in categories"
-											:key="index"
-											class="w-full px-4 py-3 text-sm capitalize duration-100 text-left hover:text-white hover:bg-primary-100"
+											@click="actions[index]"
+											class="w-full px-4 py-3 text-sm capitalize duration-100 text-left focus:bg-primary-100 hover:text-white hover:bg-primary-100"
 										>
 											{{ category }}
 										</button>
+                    <!-- <button class=""></button> -->
 									</div>
 								</div>
 							</div>
@@ -78,12 +102,16 @@
 							<button
 								v-for="(category, index) in categories"
 								:key="index"
-								class="bg-grey py-2 px-4 hover:bg-primary-100 hover:text-white"
+								@click="actions[index]"
+								class="bg-grey py-2 px-4 focus:bg-primary-100 focus:text-white hover:bg-primary-100 hover:text-white"
 							>
 								{{ category }}
 							</button>
+              <button @click="getAllProducts" class="text-white bg-secondary border border-secondary px-3 ml-4 rounded-3xl hover:opacity-80">Clear &times; </button>
 						</div>
 					</div>
+
+          <button @click="getAllProducts" class="text-white bg-secondary border border-secondary px-3 ml-4 rounded-3xl hover:opacity-80">Clear &times; </button>
 				</div>
 
 				<div

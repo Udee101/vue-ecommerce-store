@@ -10,6 +10,18 @@ export const useProductStore = defineStore('productStore', {
   getters: {
     getNewProducts(state){
       return state.products.slice(0, 4)
+    },
+    getElectronics(state){
+      return state.products.filter(el => el.category === 'electronics')
+    },
+    getJewelries(state){
+      return state.products.filter(el => el.category === 'jewelery')
+    },
+    getMensClothing(state){
+      return state.products.filter(el => el.category === "men's clothing")
+    },
+    getWomensClothing(state){
+      return state.products.filter(el => el.category === "women's clothing")
     }
   },
 

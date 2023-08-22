@@ -1,16 +1,15 @@
 <script setup>
-	import { onMounted, ref } from "vue";
-	import { getProducts } from "../api/products";
+	import { computed } from "vue";
 	import HeaderText from "./HeaderText.vue";
 	import ProductCard from "./ProductCard.vue";
+	import { useProductStore } from "../stores/productStore";
 
-	const products = ref([]);
-	const limit = ref(4);
-	onMounted(() => {
-		getProducts(limit.value).then((res) => {
-			products.value = res.data;
-		});
-	});
+	const productStore = useProductStore()
+	productStore.fetchProducts()
+	
+	const products = computed(() => {
+		return productStore.getNewProducts;
+	})
 </script>
 
 <template>

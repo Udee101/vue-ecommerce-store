@@ -111,7 +111,7 @@
 						</div>
 					</div>
 
-          <button @click="getAllProducts" class="text-white bg-secondary border border-secondary px-3 ml-4 rounded-3xl hover:opacity-80">Clear &times; </button>
+          <button @click="getAllProducts" class="block text-white bg-secondary border border-secondary px-3 ml-4 rounded-3xl hover:opacity-80 md:hidden">Clear &times; </button>
 				</div>
 
 				<div

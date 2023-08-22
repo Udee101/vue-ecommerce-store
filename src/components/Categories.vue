@@ -1,15 +1,16 @@
 <script setup>
-	import { onMounted, ref } from "vue";
-	import { getProductsCategories } from "../api/products";
+	import { computed } from "vue";
 	import CartegoryCard from "./CartegoryCard.vue";
 	import HeaderText from "./HeaderText.vue";
+	import { useProductStore } from "../stores/productStore";
 
-	const categories = ref([]);
-	onMounted(() => {
-		getProductsCategories().then((res) => {
-			categories.value = res.data;
-		});
-	});
+	const productStore = useProductStore()
+
+	productStore.fetchCategories()
+
+	const categories = computed(() => {
+		return productStore.categories
+	})
 </script>
 
 <template>

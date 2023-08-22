@@ -14,7 +14,7 @@
 					class="w-full h-full lg:w-[80%] mx-auto mix-blend-darken duration-500"
 				/>
 			</div>
-			<p class="py-3 font-semibold">{{ title }}</p>
+			<p class="py-3 font-semibold capitalize">{{ title }}</p>
 		</router-link>
 	</div>
 </template>

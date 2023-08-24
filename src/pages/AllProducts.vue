@@ -1,45 +1,31 @@
 <script setup>
 	import HeaderText from "../components/HeaderText.vue";
-	import ProductCard from "../components/ProductCard.vue";
-	import { computed, ref } from "vue";
+	import { computed, ref, shallowRef } from "vue";
 	import { useProductStore } from "../stores/productStore";
+	import Electronics from "../components/productFilters/Electronics.vue";
+	import Jewelries from "../components/productFilters/Jewelries.vue";
+	import MenClothes from "../components/productFilters/MenClothes.vue";
+	import WomenClothes from "../components/productFilters/WomenClothes.vue";
+	import AllAvailableProducts from "../components/productFilters/AllAvailableProducts.vue";
+	import SiteButton from "../components/SiteButton.vue";
+	import FilterButton from "../components/FilterButton.vue";
 
 	const isdropDownOpen = ref(false);
-	const placeholder = ref("All...");
+	const isFilterOn = ref(false);
+	const placeholder = ref("Filters");
 
 	const productStore = useProductStore();
-
 	productStore.fetchCategories();
-	productStore.fetchProducts();
 
-	const products = ref([]);
-  const categories = computed(() => {
-    return productStore.categories;
-  });
-  const allProducts = computed(() => {
-    return getAllProducts()
-  });
-	const getAllProducts = () => {
-    placeholder.value = "All..."
-    return products.value = productStore.products;
-	};
-	const getMenClothes = () => {
-		placeholder.value = "men's clothing";
-		return (products.value = productStore.getMensClothing);
-	};
-	const getWomenClothes = () => {
-		placeholder.value = "women's clothing";
-		return (products.value = productStore.getWomensClothing);
-	};
-	const getJewelry = () => {
-		placeholder.value = "jewelry";
-		return (products.value = productStore.getJewelries);
-	};
-	const getElectronic = () => {
-		placeholder.value = "electronics";
-		return (products.value = productStore.getElectronics);
-	};
-	const actions = [getElectronic, getJewelry, getMenClothes, getWomenClothes];
+	const categories = computed(() => {
+		return productStore.categories;
+	});
+
+	const currentTab = shallowRef(AllAvailableProducts);
+	const tabs = shallowRef([Electronics, Jewelries, MenClothes, WomenClothes]);
+	const currentTabComponent = computed(() => {
+		return currentTab.value;
+	});
 </script>
 
 <template>
@@ -51,81 +37,67 @@
 					:first-text="'All '"
 					:second-text="'Products'"
 				/>
-				<div class="flex items-center space-x-5">
-					<p>Filters:</p>
+				<div class="flex items-center gap-x-1">
+					<p class="hidden md:block">Filters:</p>
 					<div class="text-sm">
 						<div class="md:hidden">
 							<div class="flex justify-center">
 								<div class="relative inline-block">
-									<!-- Dropdown toggle button -->
-									<button
-										@click="isdropDownOpen = !isdropDownOpen"
-										class="relative flex items-center p-2 text-sm bg-white border rounded-md"
-									>
-										<span class="mx-1 text-gray-500">{{ placeholder }}</span>
-										<svg
-											:class="[
-												isdropDownOpen === true ? ' rotate-0' : ' -rotate-90',
-												'w-5 h-5 mx-1',
-											]"
-											viewBox="0 0 24 24"
-											fill="none"
-											xmlns="http://www.w3.org/2000/svg"
-										>
-											<path
-												d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z"
-												fill="currentColor"
-											></path>
-										</svg>
-									</button>
-
-									<!-- Dropdown menu -->
+									<FilterButton
+										:placeholder="placeholder"
+										@toggle-dropdown="isdropDownOpen = !isdropDownOpen"
+									/>
 									<div
 										v-if="isdropDownOpen"
 										@click="isdropDownOpen = false"
 										class="absolute z-[2] left-0 w-52 mt-2 overflow-hidden bg-white rounded-md shadow-x border"
 									>
-										<button
-											v-for="(category, index) in categories"
-											@click="actions[index]"
+										<SiteButton
+											v-for="(tab, index) in tabs"
+											v-bind:key="index"
+											@click-event="{currentTab = tab; isFilterOn = true}"
 											class="w-full px-4 py-3 text-sm capitalize duration-100 text-left focus:bg-primary-100 hover:text-white hover:bg-primary-100"
-										>
-											{{ category }}
-										</button>
-                    <!-- <button class=""></button> -->
+											:title="categories[index]"
+										/>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<div class="md:flex gap-x-1 hidden">
-							<button
-								v-for="(category, index) in categories"
-								:key="index"
-								@click="actions[index]"
-								class="bg-grey py-2 px-4 focus:bg-primary-100 focus:text-white hover:bg-primary-100 hover:text-white"
+						<div class="md:flex ml-4 space-x-2 hidden">
+							<SiteButton
+								v-for="(tab, index) in tabs"
+								v-bind:key="index"
+								@click-event="{currentTab = tab; isFilterOn = true}"
+								:class="[
+									'bg-grey py-2 px-4 hover:bg-primary-100 hover:text-white relative',
+									{
+										'before:absolute before:bg-primary-100 before:inset-0 before:':
+											currentTab === tab,
+									},
+								]"
 							>
-								{{ category }}
-							</button>
-              <button @click="getAllProducts" class="text-white bg-secondary border border-secondary px-3 ml-4 rounded-3xl hover:opacity-80">Clear &times; </button>
+								<p
+									:class="[
+										'relative z-[1]',
+										{ 'text-white': currentTab === tab },
+									]"
+								>
+									{{ categories[index] }}
+								</p>
+							</SiteButton>
 						</div>
 					</div>
-
-          <button @click="getAllProducts" class="block text-white bg-secondary border border-secondary px-3 ml-4 rounded-3xl hover:opacity-80 md:hidden">Clear &times; </button>
+					<template v-if="isFilterOn">
+						<SiteButton
+							@click="{currentTab = AllAvailableProducts; isFilterOn = false}"
+							class="block text-white text-sm bg-secondary border border-secondary px-4 py-1 ml-4 rounded-3xl hover:opacity-80"
+							>{{ 'Clear' }} &times;</SiteButton
+						>
+					</template>
 				</div>
-
-				<div
-					class="pt-4 grid grid-cols-2 justify-items-center gap-4 md:grid-cols-3 lg:grid-cols-4"
-				>
-					<ProductCard
-						v-for="item in products"
-						:key="item.id"
-						:product="item"
-					/>
-				</div>
+				<component v-bind:is="currentTabComponent"></component>
 			</div>
 		</div>
 	</section>
 </template>
-
-<style scoped></style>

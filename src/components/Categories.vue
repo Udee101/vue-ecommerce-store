@@ -14,7 +14,7 @@
 </script>
 
 <template>
-	<section class="w-full">
+	<section class="w-full p-4">
 		<div class="max-w-site mx-auto pt-10 pb-32">
 			<div class="flex flex-col gap-y-8 place-items-center text-center">
 				<HeaderText 

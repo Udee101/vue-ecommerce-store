@@ -19,17 +19,16 @@ const routes = [
   },
 
   {
-    path: '/product',
-    name: 'product',
-    component: Product,
-    // props: true
-  },
-
-  {
     path: '/products',
     name: 'products',
     component: AllProducts,
-  }
+  },
+
+  {
+    path: '/product/:id',
+    name: 'product',
+    component: Product,
+  },
 ]
 
 export default routes;

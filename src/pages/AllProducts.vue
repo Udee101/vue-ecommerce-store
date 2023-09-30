@@ -29,7 +29,7 @@
 </script>
 
 <template>
-	<section class="w-full mt-16">
+	<section class="w-full mt-16 p-4">
 		<div class="max-w-site mx-auto pb-32">
 			<div class="space-y-4 w-full">
 				<HeaderText

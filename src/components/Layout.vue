@@ -7,12 +7,9 @@ import NavBar from './global/NavBar.vue';
 <template>
   <div>
     <NavBar />
-    <main class="px-4 pt-4 pb-[30rem] md:pb-80 min-h-screen ">
+    <main class="pt-4 pb-[30rem] md:pb-80 min-h-screen ">
       <slot />
     </main>
     <Footer />
   </div>
 </template>
-
-<style scoped>
-</style>

@@ -14,7 +14,7 @@ import { computed } from 'vue';
 
 <template>
 	<div class="w-full">
-		<router-link :to="{ name: 'home' }">
+		<router-link :to="{ name: 'product', params: {id : product.id} }">
 			<div :class="`img-container bg-grey p-6 ${imgContainerWidth} h-[72%] md:w-full`">
 				<img
 					:src="product.image"

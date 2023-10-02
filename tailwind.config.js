@@ -7,6 +7,7 @@ export default {
         'primary': '#3A408C',
         'primary-100': '#484fb1',
         'secondary': '#E2342D',
+        'secondary-100': '#DF5853',
         'grey': '#F3F3F3'
       },
       maxWidth: {

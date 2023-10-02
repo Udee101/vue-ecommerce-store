@@ -1,5 +1,12 @@
 <script setup>
-import { logoText, cart } from '../../assets';
+import { computed } from 'vue';
+import { logoText } from '../../assets';
+import { useCartStore } from '../../stores/cartStore'
+
+const cartStore = useCartStore();
+const numberOfItems = computed(() => {
+  return cartStore.getCartItemsCount;
+})
 </script>
 
 <template>
@@ -17,10 +24,10 @@ import { logoText, cart } from '../../assets';
           <li>Login</li>
         </ul>
 
-        <div class="relative cursor-pointer">
-          <img :src="cart" alt="cart icon" class="w-6">
-          <span class="absolute flex items-center justify-center left-3 -top-1 text-xs text-center bg-slate-400 rounded-full min-w-[0.75rem] min-h-[0.75rem]">0</span>
-        </div>
+        <router-link :to="{name: 'cart'}" class="relative cursor-pointer">
+          <i class="material-icons-outlined">shopping_cart</i>
+          <p class="absolute flex items-center justify-center left-3 -top-1 text-xs text-center bg-red-400 rounded-full min-w-[0.75rem] min-h-[0.75rem]"><span class="text-white">{{ numberOfItems }}</span></p>
+        </router-link>
       </div>
     </div>
   </header>

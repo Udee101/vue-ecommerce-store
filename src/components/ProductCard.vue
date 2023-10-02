@@ -1,15 +1,10 @@
 <script setup>
-import { computed } from 'vue';
+import { formatTitle } from '../helpers';
 
 	const props = defineProps({
 		product: Object,
     imgContainerWidth: String
 	});
-
-  const formatTitle = computed(() => {
-    let text = props.product.title.slice(0, 16)
-    return `${text}...`
-  })
 </script>
 
 <template>
@@ -22,9 +17,9 @@ import { computed } from 'vue';
 					class="w-full h-full lg:w-[80%] mx-auto mix-blend-darken duration-500"
 				/>
 			</div>
-      <p class="pt-2 text-sm font-semibold w-full text-left">{{ formatTitle }}</p>
+      <p class="pt-2 text-sm font-semibold w-full text-left">{{ formatTitle(product.title, 16) }}</p>
       <p class="text-sm font-light w-full text-left">
-        &dollar;{{ product.price }}
+        &dollar;{{ product.price.toFixed(2) }}
       </p>
 		</router-link>
 	</div>

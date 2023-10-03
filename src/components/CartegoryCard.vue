@@ -1,20 +1,25 @@
 <script setup>
-	defineProps({
+import { computed } from 'vue';
+
+	const props = defineProps({
 		title: String,
+		image: String,
 	});
+
+	const correctTitle = computed(() => {
+		return props.title === "jewelery" ? "jewelry" : props.title
+	})
 </script>
 
 <template>
-	<div class="py-3 md:w-[30%]">
-		<router-link :to="{ name: 'home' }">
-			<div class="img-container bg-grey p-6 w-44 h-auto md:w-full">
-				<img
-					src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-					alt=""
-					class="w-full h-full lg:w-[80%] mx-auto mix-blend-darken duration-500"
-				/>
-			</div>
-			<p class="py-3 font-semibold capitalize">{{ title }}</p>
-		</router-link>
+	<div class="w-full">
+		<div class="bg-grey p-6 w-44 h-[72%] md:w-full">
+			<img
+				:src="image"
+				alt="category image"
+				class="w-full h-full mx-auto mix-blend-darken duration-500 object-contain lg:w-[80%]"
+			/>
+		</div>
+		<p class="pt-3 font-semibold capitalize">{{ correctTitle }}</p>
 	</div>
 </template>

@@ -3,11 +3,9 @@
 	import { img1, img2, img4 } from "../assets";
 
 	const bannerImgs = [img1, img2, img4];
-	const paginationBtn =
-		"border border-slate-50 p-1 h-10 w-16 bg-slate-50 cursor-pointer text-gray-600 text-lg flex place-content-center rounded-md duration-[0.3s] hover:opacity-75 ";
-
+	const paginationBtn = "bg-grey p-4 rounded-full cursor-pointer hover:opacity-80 duration-200";
+	
 	const currentSlide = ref(0);
-
 	const prevSlide = () => {
 		currentSlide.value === 0 ? (currentSlide.value = 2) : currentSlide.value--;
 	};
@@ -34,23 +32,19 @@
 					/>
 				</div>
 
-				<div
-					class="absolute -left-3 w-full h-[90%] top-0 flex items-center justify-center"
-				>
-					<div
-						class="bg-slate-50 opacity-70 w-64 h-56 flex justify-center items-center rounded-md"
-					>
-						<h1 class="font-bold text-3xl text-center text-primary">
-							We are <br />
-							<span class="text-secondary text-6xl">Open!</span>
-						</h1>
-					</div>
-				</div>
+				<div class="absolute h-[90%] top-0 flex items-center w-full">
+					<div class="flex w-[95%] justify-between gap-2 mx-auto items-center">
+						<i @click="prevSlide" :class="`material-icons-outlined ${paginationBtn}`">arrow_back_ios</i>
 
-				<div class="absolute bottom-5 -left-3 flex w-full justify-center">
-					<div class="flex space-x-12 items-center">
-						<div @click="prevSlide" :class="paginationBtn">&larr;</div>
-						<div @click="nextSlide" :class="paginationBtn">&rarr;</div>
+						<div class="bg-grey-100 w-64 h-56 flex flex-col justify-center items-center md:w-[35%]">
+							<h1 class="font-bold text-6xl text-center text-secondary uppercase md:text-7xl lg:text-8xl">
+								Sale
+							</h1>
+							<p class="uppercase font-bold md:text-lg lg:text-xl">Up to 50% off</p>
+							<router-link :to="{name: 'products'}" class="bg-primary py-2 px-4 rounded-md text-white font-semibold mt-2 hover:bg-primary-100 duration-200">Shop Now</router-link>
+						</div>
+
+						<i @click="nextSlide" :class="`material-icons-outlined ${paginationBtn}`">arrow_forward_ios</i>
 					</div>
 				</div>
 			</div>

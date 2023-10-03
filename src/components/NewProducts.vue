@@ -22,7 +22,7 @@
 				/>
 
 				<div class="overflow-x-auto w-full my-2">
-					<div class="flex justify-items-center gap-x-6">
+					<div class="flex gap-x-6">
 						<ProductCard
 							v-for="item in products"
 							:key="item.id"

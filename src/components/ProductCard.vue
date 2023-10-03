@@ -13,8 +13,8 @@ import { formatTitle } from '../helpers';
 			<div :class="`img-container bg-grey p-6 ${imgContainerWidth} h-[72%] md:w-full`">
 				<img
 					:src="product.image"
-					alt=""
-					class="w-full h-full lg:w-[80%] mx-auto mix-blend-darken duration-500"
+					alt="product image"
+					class="w-full h-full lg:w-[80%] mx-auto mix-blend-darken duration-500 object-contain"
 				/>
 			</div>
       <p class="pt-2 text-sm font-semibold w-full text-left">{{ formatTitle(product.title, 16) }}</p>

@@ -4,12 +4,16 @@
 	import CartItem from "../components/CartItem.vue";
 	import CartTotal from "../components/CartTotal.vue";
 	import EmptyCart from "../components/EmptyCart.vue";
-import HeaderText from "../components/HeaderText.vue";
+	import HeaderText from "../components/HeaderText.vue";
+	import SiteButton from "../components/SiteButton.vue";
 
 	const cartStore = useCartStore();
 	const cartItems = computed(() => {
 		return cartStore.cart;
 	});
+	const clearCart = () => {
+		cartStore.emptyCart()
+	};
 
 	const subTotal = computed(() => {
 		let price = 0;
@@ -53,6 +57,12 @@ import HeaderText from "../components/HeaderText.vue";
 							<CartTotal :subTotal="subTotal" />
 						</div>
 					</div>
+					<SiteButton
+						@click-event="clearCart" 
+						class="mt-6 flex items-center justify-center py-2 px-4 bg-secondary font-semibold text-white rounded-md duration-200 hover:bg-secondary-100"
+					>
+						<i class="material-icons-outlined">delete</i>Empty Cart
+					</SiteButton>
 				</template>
 
 				<template v-if="cartIsEmpty">

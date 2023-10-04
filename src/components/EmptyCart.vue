@@ -11,7 +11,7 @@
 			<div class="mt-4">
 				<router-link
 					:to="{ name: 'products' }"
-					class="uppercase bg-primary text-white p-2 rounded-md hover:bg-primary-100 duration-200"
+					class="bg-primary font-semibold text-white py-2 px-4 rounded-md hover:bg-primary-100 duration-200"
         >
           Start Shopping
         </router-link>

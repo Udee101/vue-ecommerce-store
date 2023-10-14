@@ -3,17 +3,16 @@
 	import SiteButton from "../components/SiteButton.vue";
 	import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
   import { useUserStore } from '../stores/userStore'
-	// import { useRouter } from "vue-router";
+	import { useRouter } from "vue-router";
 
   const userStore = useUserStore();
-	// const router = useRouter()
+	const router = useRouter();
 	const handleGoogleLogin = () => {
 		const auth = getAuth();
 		const provider = new GoogleAuthProvider();
 		signInWithPopup(auth, provider)
 			.then((res) => {
 				const user = res.user;
-				console.log(user);
         userStore.addUser({
           id: user.uid,
           full_name: user.displayName,
@@ -23,6 +22,8 @@
 
 				localStorage.setItem("user_token", JSON.stringify(user.accessToken))
 				localStorage.setItem("token_creation_time", Date.now())
+
+				router.push({ name: 'products' })
 			})
 			.catch((error) => {
 				console.log(error);

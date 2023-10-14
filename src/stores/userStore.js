@@ -32,13 +32,11 @@ export const useUserStore = defineStore('userStore', () => {
     isLoggedIn.value = true
   }
 
-  const signOut = () => {
+  const signOut = async () => {
     localStorage.removeItem("user")
     localStorage.removeItem("user_token")
     isLoggedIn.value = false
-    setTimeout(() => {
-      window.location.reload()
-    }, 2000)
+    window.location.reload()
   }
 
   return {

@@ -22,6 +22,20 @@ const routes = [
   },
 
   {
+    path: '/login',
+    name: 'login',
+    component: Login,
+    meta: { guest: true }
+  },
+
+  {
+    path: '/register',
+    name: 'register',
+    component: SignUp,
+    meta: { guest: true }
+  },
+
+  {
     path: '/products',
     name: 'products',
     component: AllProducts,
@@ -37,18 +51,6 @@ const routes = [
     path: '/cart',
     name: 'cart',
     component: Cart,
-  },
-
-  {
-    path: '/login',
-    name: 'login',
-    component: Login,
-  },
-
-  {
-    path: '/register',
-    name: 'register',
-    component: SignUp,
   },
 ]
 

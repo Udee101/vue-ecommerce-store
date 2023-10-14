@@ -2,6 +2,8 @@ import HomePage from '../pages/Home.vue';
 import Product from '../pages/Product.vue';
 import AllProducts from '../pages/AllProducts.vue';
 import Cart from '../pages/Cart.vue';
+import Login from '../pages/Login.vue';
+import SignUp from '../pages/Register.vue';
 
 const routes = [
   {
@@ -35,6 +37,18 @@ const routes = [
     path: '/cart',
     name: 'cart',
     component: Cart,
+  },
+
+  {
+    path: '/login',
+    name: 'login',
+    component: Login,
+  },
+
+  {
+    path: '/register',
+    name: 'register',
+    component: SignUp,
   },
 ]
 

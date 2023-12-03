@@ -8,6 +8,7 @@ const router = createRouter({
 
 const invalidateToken = () => {
   if (localStorage.getItem("token_creation_time") === null) {
+    localStorage.removeItem("user");
     localStorage.removeItem("user_token");
   }
 
@@ -15,6 +16,7 @@ const invalidateToken = () => {
   const elapsedTimeInSeconds = (Date.now() - createdAt) / 1000;
 
   if (elapsedTimeInSeconds > 600) {
+    localStorage.removeItem("user");
     localStorage.removeItem("user_token");
   }
 }
@@ -32,6 +34,15 @@ router.beforeEach((to, from, next) => {
       })
     } else {
       next()  
+    }
+  } else if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (authenticated) {
+      next()
+    } else {
+      next({
+        name: 'login',
+        query: { nextUrl: to.fullPath }
+      })
     }
   } else {
     next()

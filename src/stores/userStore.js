@@ -11,12 +11,6 @@ export const useUserStore = defineStore('userStore', () => {
     user.value = JSON.parse(localStorage.getItem("user"))
     isLoggedIn.value = true
   }
-  watch(
-    user, (userVal) => {
-      localStorage.setItem("user", JSON.stringify(userVal))
-    },
-    { deep: true }
-  )
 
   const userFirstName = computed(() => {
     if (user.value.displayName !== "") {

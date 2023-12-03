@@ -4,6 +4,7 @@ import AllProducts from '../pages/AllProducts.vue';
 import Cart from '../pages/Cart.vue';
 import Login from '../pages/Login.vue';
 import SignUp from '../pages/Register.vue';
+import Checkout from '../pages/Checkout.vue';
 
 const routes = [
   {
@@ -51,6 +52,14 @@ const routes = [
     path: '/cart',
     name: 'cart',
     component: Cart,
+  },
+
+  {
+    path: '/cart/checkout/:amount',
+    name: 'checkout',
+    component: Checkout,
+    props: true,
+    meta: { requiresAuth: true }
   },
 ]
 

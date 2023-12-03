@@ -3,27 +3,34 @@
 	import SiteButton from "../components/SiteButton.vue";
 	import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
   import { useUserStore } from '../stores/userStore'
-	import { useRouter } from "vue-router";
+	import { useRoute, useRouter } from "vue-router";
 
   const userStore = useUserStore();
 	const router = useRouter();
+	const route = useRoute();
 	const handleGoogleLogin = () => {
 		const auth = getAuth();
 		const provider = new GoogleAuthProvider();
 		signInWithPopup(auth, provider)
 			.then((res) => {
 				const user = res.user;
-        userStore.addUser({
+				const userStoreData = {
           id: user.uid,
           full_name: user.displayName,
           email: user.email,
           image: user.photoURL
-        })
+        }
+        userStore.addUser(userStoreData)
 
+				localStorage.setItem("user", JSON.stringify(userStoreData))
 				localStorage.setItem("user_token", JSON.stringify(user.accessToken))
 				localStorage.setItem("token_creation_time", Date.now())
 
-				router.push({ name: 'products' })
+				if (route.query.nextUrl !== null) {
+					router.push(route.query.nextUrl)
+				} else {
+					router.push({ name: 'products' })
+				}
 			})
 			.catch((error) => {
 				console.log(error);

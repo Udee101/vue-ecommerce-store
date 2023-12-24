@@ -66,6 +66,8 @@
         </SiteButton>
 
         <p class="text-center text-gray-500">Already have an account ? <router-link :to="{name: 'login'}" class="text-primary-100">Login</router-link></p>
+
+				<p class="text-center"> <router-link :to="{name: 'home'}" class="text-primary-100 underline">Back Home</router-link></p>
 			</div>
 		</div>
 	</div>

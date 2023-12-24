@@ -79,7 +79,7 @@
 
         <p class="text-center text-gray-400">Don't have an account ? <router-link :to="{name: 'register'}" class="text-primary-100">Sign Up</router-link></p>
 
-				<p class="text-center"> <router-link :to="{name: 'home'}" class="text-primary-100">Back Home</router-link></p>
+				<p class="text-center"> <router-link :to="{name: 'home'}" class="text-primary-100 underline">Back Home</router-link></p>
 			</div>
 		</div>
 	</div>

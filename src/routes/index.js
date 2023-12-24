@@ -23,7 +23,7 @@ const invalidateToken = () => {
 
 router.beforeEach((to, from, next) => {
 
-  invalidateToken();
+  // invalidateToken();
 
   const authenticated = localStorage.getItem("user_token");
 

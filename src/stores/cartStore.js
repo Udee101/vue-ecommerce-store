@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { computed, ref, watch } from "vue";
+import { toast } from "vue3-toastify";
 
 
 export const useCartStore = defineStore('cartStore', () => {
@@ -21,16 +22,19 @@ export const useCartStore = defineStore('cartStore', () => {
   const addToCart = (payload) => {
     const itemIsInCart = cart.value.find((item) => payload.id === item.id )
     if (itemIsInCart) {
-      itemIsInCart.quantity += payload.quantity;
+      toast.warn("Item already added to cart")
     } else {
       cart.value.push(payload)
+      toast.success("Item added to cart")
     }
   }
   const removeFromCart = (product) => {
     cart.value = cart.value.filter((item) => item.id != product.id)
+    toast.success("Item removed from cart")
   }
   const emptyCart = () => {
     cart.value = []
+    toast.info("Your cart is now empty")
   }
 
   return {

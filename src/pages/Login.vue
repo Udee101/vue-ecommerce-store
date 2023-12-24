@@ -25,8 +25,8 @@
 				localStorage.setItem("user", JSON.stringify(userStoreData))
 				localStorage.setItem("user_token", JSON.stringify(user.accessToken))
 				localStorage.setItem("token_creation_time", Date.now())
-
-				if (route.query.nextUrl !== null) {
+				
+				if (route.query.nextUrl != null) {
 					router.push(route.query.nextUrl)
 				} else {
 					router.push({ name: 'products' })
@@ -78,6 +78,8 @@
         </SiteButton>
 
         <p class="text-center text-gray-400">Don't have an account ? <router-link :to="{name: 'register'}" class="text-primary-100">Sign Up</router-link></p>
+
+				<p class="text-center"> <router-link :to="{name: 'home'}" class="text-primary-100">Back Home</router-link></p>
 			</div>
 		</div>
 	</div>
